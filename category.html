@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Category - Image World</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.2;
+      z-index: -1;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-900">
+
+  <!-- Header -->
+  <header class="bg-white shadow p-4 flex justify-between items-center">
+    <h1 class="text-3xl font-bold text-blue-600">Image World</h1>
+    <nav>
+      <a href="index.html" class="mx-2 text-gray-700 hover:text-blue-600">Home</a>
+      <a href="#" class="mx-2 text-gray-700 hover:text-blue-600">Categories</a>
+      <a href="#" class="mx-2 text-gray-700 hover:text-blue-600">Upload</a>
+      <a href="#" class="mx-2 text-gray-700 hover:text-blue-600">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Category Title -->
+  <section class="text-center mt-10">
+    <h2 id="categoryTitle" class="text-4xl font-bold mb-4"></h2>
+  </section>
+
+  <!-- Gallery -->
+  <section id="imageGallery" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-6"></section>
+
+  <!-- Footer -->
+  <footer class="bg-white text-center p-4 mt-10">
+    <p>&copy; 2025 Image World. All rights reserved.</p>
+  </footer>
+
+  <!-- Script -->
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const category = params.get("query") || "Nature";
+
+    document.getElementById("categoryTitle").textContent = `${category} Images`;
+
+    async function fetchCategoryImages() {
+      const accessKey = "U5LxC4nE1Vhd6EwVdciRjNjXFDfXkrY05gXwjOgXhxZOSC6ad6IItjdz"; // Replace if expired
+
+      try {
+        const res = await fetch(`https://api.pexels.com/v1/search?query=${category}&per_page=18`, {
+          headers: {
+            Authorization: accessKey
+          }
+        });
+
+        if (!res.ok) throw new Error("Failed to fetch images");
+
+        const data = await res.json();
+        const gallery = document.getElementById("imageGallery");
+        gallery.innerHTML = "";
+
+        if (data.photos.length === 0) {
+          gallery.innerHTML = "<p class='text-center col-span-3 text-lg'>No images found for this category.</p>";
+          return;
+        }
+
+        data.photos.forEach(photo => {
+          const img = document.createElement("img");
+          img.src = photo.src.large;
+          img.alt = photo.alt;
+          img.className = "w-full h-64 object-cover rounded-lg shadow hover:scale-105 transition-transform duration-300";
+          gallery.appendChild(img);
+        });
+
+      } catch (error) {
+        console.error("Error fetching category images:", error);
+        document.getElementById("imageGallery").innerHTML = "<p class='text-red-600 col-span-3'>Error loading images.</p>";
+      }
+    }
+
+    fetchCategoryImages();
+  </script>
+</body>
+</html>
