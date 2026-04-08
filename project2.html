@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image World</title>
+    <link rel="icon" href="https://t4.ftcdn.net/jpg/02/05/36/29/360_F_205362978_quQ0G3hPDIcWNegIYVq5htsMBTNWauhG.jpg">
+    <link rel="stylesheet" href="">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+    <style>
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2;
+            z-index: -1;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .category-image {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .category-image:hover {
+            transform: scale(1.05);
+        }
+    </style>
+
+    <!-- ✅ Search function script -->
+    <script>
+        function searchImages() {
+            const input = document.getElementById("searchInput").value.trim();
+            if (input !== "") {
+                window.location.href = `category.html?query=${encodeURIComponent(input)}`;
+            } else {
+                alert("Please enter a search term.");
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-gray-100 text-gray-900">
+    <!-- Header -->
+    <header class="bg-white shadow p-4 flex justify-between items-center">
+        <h1 class="text-3xl font-bold text-blue-600">Image World</h1>
+        <nav>
+            <a href="index.html" class="mx-2 text-gray-700 hover:text-blue-600">Home</a>
+            <a href="#" class="mx-2 text-gray-700 hover:text-blue-600">Categories</a>
+            <a href="#" class="mx-2 text-gray-700 hover:text-blue-600">Upload</a>
+            <a href="#" class="mx-2 text-gray-700 hover:text-blue-600">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="text-center mt-20">
+        <h2 class="text-4xl font-bold mb-4">Find Stunning Free Images</h2>
+        <input id="searchInput" type="text" placeholder="Search images..."
+            class="p-3 w-2/3 max-w-xl border rounded-lg shadow">
+        <button onclick="searchImages()"
+            class="ml-2 px-5 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Search</button>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="mt-10 px-6">
+        <h3 class="text-2xl font-semibold mb-6 text-center">Explore Categories</h3>
+        <div class="category-grid">
+
+            <div class="text-center">
+                <a href="category.html?query=Cars">
+                    <img src="https://images.pexels.com/photos/358070/pexels-photo-358070.jpeg" alt="Cars"
+                        class="cursor-pointer category-image rounded-lg shadow w-full h-40 object-cover">
+                    <h4 class="text-lg font-medium mt-2">Cars</h4>
+                </a>
+            </div>
+
+            <div class="text-center">
+                <a href="category.html?query=Nature">
+                    <img src="https://images.pexels.com/photos/34950/pexels-photo.jpg" alt="Nature"
+                        class="cursor-pointer category-image rounded-lg shadow w-full h-40 object-cover">
+                    <h4 class="text-lg font-medium mt-2">Nature</h4>
+                </a>
+            </div>
+
+            <div class="text-center">
+                <a href="category.html?query=Bikes">
+                    <img src="https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg" alt="Bikes"
+                        class="cursor-pointer category-image rounded-lg shadow w-full h-40 object-cover">
+                    <h4 class="text-lg font-medium mt-2">Bikes</h4>
+                </a>
+            </div>
+
+            <div class="text-center">
+                <a href="category.html?query=dogs">
+                    <img src="https://images.pexels.com/photos/4587993/pexels-photo-4587993.jpeg?auto=compress&cs=tinysrgb&w=800"
+                        alt="Dog" class="cursor-pointer category-image rounded-lg shadow w-full h-40 object-cover">
+                    <h4 class="text-lg font-medium mt-2">Dog</h4>
+                </a>
+            </div>
+
+            <div class="text-center">
+                <a href="category.html?query=Landscape">
+                    <img src="https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg" alt="Landscape"
+                        class="cursor-pointer category-image rounded-lg shadow w-full h-40 object-cover">
+                    <h4 class="text-lg font-medium mt-2">Landscape</h4>
+                </a>
+            </div>
+
+            <div class="text-center">
+                <a href="category.html?query=Technology">
+                    <img src="https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg" alt="Technology"
+                        class="cursor-pointer category-image rounded-lg shadow w-full h-40 object-cover">
+                    <h4 class="text-lg font-medium mt-2">Technology</h4>
+                </a>
+            </div>
+
+            <div class="text-center">
+                <a href="category.html?query=Animals">
+                    <img src="https://images.pexels.com/photos/145939/pexels-photo-145939.jpeg" alt="Animals"
+                        class="cursor-pointer category-image rounded-lg shadow w-full h-40 object-cover">
+                    <h4 class="text-lg font-medium mt-2">Animals</h4>
+                </a>
+            </div>
+
+            <div class="text-center">
+                <a href="category.html?query=Food">
+                    <img src="https://images.pexels.com/photos/70497/pexels-photo-70497.jpeg" alt="Food"
+                        class="cursor-pointer category-image rounded-lg shadow w-full h-40 object-cover">
+                    <h4 class="text-lg font-medium mt-2">Food</h4>
+                </a>
+            </div>
+
+            <div class="text-center">
+                <a href="category.html?query=Space">
+                    <img src="https://images.pexels.com/photos/847393/pexels-photo-847393.jpeg?auto=compress&cs=tinysrgb&w=800"
+                        alt="Space" class="cursor-pointer category-image rounded-lg shadow w-full h-40 object-cover">
+                    <h4 class="text-lg font-medium mt-2">Space</h4>
+                </a>
+            </div>
+
+            <div class="text-center">
+                <a href="category.html?query=Art">
+                    <img src="https://images.pexels.com/photos/315320/pexels-photo-315320.jpeg" alt="Art"
+                        class="cursor-pointer category-image rounded-lg shadow w-full h-40 object-cover">
+                    <h4 class="text-lg font-medium mt-2">Art</h4>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white text-center p-4 mt-10">
+        <p>&copy; 2025 Image World. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
